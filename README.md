@@ -51,3 +51,49 @@ dotfiles push
 ```                                                                             
                                                                                 
 Easy peasy 🍋 squeezy!  
+
+## Migrating to a New System                                                    
+                                                                                
+To migrate your existing dotfiles repository to a new system, clone a bare      
+repository for your remote repository and establish an alias for working with   
+it.                                                                             
+                                                                                
+```bash                                                                         
+git clone --bare <git-repo-url> $HOME/.dotfiles                                 
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'      
+```                                                                             
+                                                                                
+Next, hide untracked files and prevent adding the repository to itself.         
+                                                                                
+```bash                                                                         
+dotfiles config --local status.showUntrackedFiles no                            
+echo ".dotfiles" >> $HOME/.gitignore                                            
+```                                                                             
+                                                                                
+Then, use the alias to checkout your dotfiles in your `$HOME` directory.        
+                                                                                
+```bash                                                                         
+dotfiles checkout                                                               
+```                                                                             
+                                                                                
+### ⚠️ File Conflicts
+
+> If current files on your system conflict with those being checked out, then   
+you will get a warning about untracked working tree files being overwritten. To 
+resolve this, rename each of those files to some non-conflicting name or move   
+them to a backup directory. When I encounter this warning message I move all    
+conflicting files to a `.dotfiles.bak` directory so that the files no longer    
+pose a conflict and are contained within a single directory that is easy to     
+manage. Below is the simple command that I use to automate this process.        
+>```bash                                                                        
+>mkdir -p .dotfiles.bak \                                                       
+>   && dotfiles checkout 2>&1 | egrep "^\s+" | awk {'print $1'} | xargs -I {} mv
+>   && dotfiles checkout                                                        
+>```                                                                            
+                                                                                
+### 🍾 You're Done                                                              
+                                                                                
+Now your dotfiles repository is ready for use. Don't forget to specify your     
+upstream branch on your first push (e.g., `dotfiles push -u origin master`)! If 
+you do not have the dotfiles alias in you `.bashrc` already, then I suggest     
+adding it so that the alias is present for future session.
