@@ -97,3 +97,78 @@ Now your dotfiles repository is ready for use. Don't forget to specify your
 upstream branch on your first push (e.g., `dotfiles push -u origin master`)! If 
 you do not have the dotfiles alias in you `.bashrc` already, then I suggest     
 adding it so that the alias is present for future session.
+
+## Why Bare Repositories                                                        
+                                                                                
+The concept of using a bare repository is nothing new and definitely not a      
+concept that I originated, but a thorough explanation of why a bare repository  
+is used over a normal repository seemed to be missing. I use this section to    
+disect the differences of the repositories types to show by example why bare    
+repositories have been chosen for the task.                                     
+                                                                                
+According to Git (`man gitrepository-layout`):                                  
+                                                                                
+> A Git repository comes in two different flavours:                             
+> * a `.git` directory at the root of the working tree;                         
+> * a `<project>.git` directory that is a bare repository (i.e., without its own
+> working tree), that is typically used for exchanging histores with others by  
+> pushing into it and fetching from it.                                         
+                                                                                
+We can turn to the Git glossary (`man gitglossary`) for further explanation:    
+                                                                                
+> bare repository                                                               
+>                                                                               
+> A bare repository is normally an appropriately named directory with a .git    
+> suffix that does not have a locally checked-out copy of any of the files      
+> under revision control. That is, all of the Git administrative and control    
+> files that would normally be present in the hidden `.git` sub-directory are   
+> directly present in the repository `.git` directory instead, and no other     
+> files are present and checked out.                                            
+                                                                                
+For example, if we were to initiate a normal repository `<repo>` in our `$HOME` 
+directory with the command `git init $HOME/<repo>`. The result file structure   
+will look like:
+
+```bash                                                                         
+$HOME/                                                                          
+├── ...                                                                         
+└── <repo>/                                                                     
+    └── .git/                                                                   
+        ├── branches/                                                           
+        ...                                                                     
+        └── refs/                                                               
+            ├── heads/                                                          
+            └── tags/                                                           
+```                                                                             
+                                                                                
+Now let's say we opt to initialize `<repo>` as a bare repository instead using  
+the command `git init --bare $HOME/<repo>`. The resulting file structure should 
+take theform:                                                                   
+                                                                                
+```bash                                                                         
+$HOME/                                                                          
+├── ...                                                                         
+└── <repo>/                                                                     
+    ├── branches/                                                               
+    ...                                                                         
+    └── refs/                                                                   
+        ├── heads/                                                              
+        └── tags/                                                               
+```                                                                             
+
+We can use the normal repository to mimic the behavior of our bare repository   
+with                                                                            
+`alias dotfiles=/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME`. 
+Although the behavior seems identical, there is a fundamental difference between
+how Git interpets these two cases:                                              
+* For the normal repository, the default working tree is `$HOME\<repo>` which we
+override with the `--work-tree=$HOME` option. When we override the working tree 
+to `$HOME`, the `$HOME/<repo>` directory becomes useless except for the fact    
+that it is the parent directory of the `<git dir>`.                             
+* For the bare repository, we have to specify `--work-tree=$HOME` since there is
+no default working tree for bare repositories. As a result, `$HOME/<repo>` is   
+the `<git dir>` and there is never a scenario where `$HOME/<repo>` becomes      
+useless.                                                                        
+                                                                                
+Is this difference signficant? No, the difference is semantics and an extra     
+folder.
