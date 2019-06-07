@@ -37,3 +37,17 @@ dotfiles remote add origin <git-repo-url>
 
 Now your dotfiles repository is ready for use. I suggest adding the alias to    
 your `.bashrc` file so that it is present for future session.  
+
+## Using the Dotfiles Alias                                                              
+                                                                                
+We can demo the dotfiles alias by adding the `.gitignore` file we either created
+or modified during the setup:                                                   
+                                                                                
+```bash                                                                         
+dotfiles add .gitignore                                                         
+dotfiles status                                                                 
+dotfiles commit -m "Added gitignore."                                           
+dotfiles push                                                                   
+```                                                                             
+                                                                                
+Easy peasy 🍋 squeezy!  
