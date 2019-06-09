@@ -13,7 +13,7 @@
 ### 🚦 A Quick Note About Workflows
 
 > To start from scratch, the remote repository you intend to use should be
-empty.If your remote repository is non-empty (even if the only contents are a
+empty. If your remote repository is non-empty (even if the only contents are a
 single README file), then I recommend skipping to the
 [Migrating to a New System](#migrating-to-a-new-system) section. The workflows
 are similar (and I promise you won't miss out on any important details), but in
@@ -119,19 +119,19 @@ According to Git (`man gitrepository-layout`):
 > A Git repository comes in two different flavours:
 > * a `.git` directory at the root of the working tree;
 > * a `<project>.git` directory that is a bare repository (i.e., without its own
-> working tree), that is typically used for exchanging histores with others by
-> pushing into it and fetching from it.
+working tree), that is typically used for exchanging histores with others by
+pushing into it and fetching from it.
 
 We can turn to the Git glossary (`man gitglossary`) for further explanation:
 
-> bare repository
->
-> A bare repository is normally an appropriately named directory with a .git
-> suffix that does not have a locally checked-out copy of any of the files
-> under revision control. That is, all of the Git administrative and control
-> files that would normally be present in the hidden `.git` sub-directory are
-> directly present in the repository `.git` directory instead, and no other
-> files are present and checked out.
+> bare repository\
+\
+A bare repository is normally an appropriately named directory with a .git
+suffix that does not have a locally checked-out copy of any of the files
+under revision control. That is, all of the Git administrative and control
+files that would normally be present in the hidden `.git` sub-directory are
+directly present in the repository `.git` directory instead, and no other
+files are present and checked out.
 
 For example, if we were to initiate a normal repository `<repo>` in our `$HOME`
 directory with the command `git init $HOME/<repo>`. The result file structure
