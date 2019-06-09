@@ -180,3 +180,10 @@ useless.
 
 Is this difference signficant? No, the difference is semantics and an extra
 folder.
+
+## References
+
+1. [StreakyCobra's Hacker News Comment](https://news.ycombinator.com/item?id=11071754)
+2. [durdn's Atlassian Write-up](https://www.atlassian.com/git/tutorials/dotfiles)
+3. [Git Reference Manual](https://git-scm.com/docs)
+ 
