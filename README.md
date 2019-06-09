@@ -95,7 +95,8 @@ pose a conflict and are contained within a single directory that is easy to
 manage. Below is the simple command that I use to automate this process.
 >```bash
 >mkdir -p .dotfiles.bak \
->   && dotfiles checkout 2>&1 | egrep "^\s+" | awk {'print $1'} | xargs -I {} mv {} .dotfiles.bak \
+>   && dotfiles checkout 2>&1 | egrep "^\s+" | awk {'print $1'} | \
+>      xargs -I {} mv {} .dotfiles.bak \
 >   && dotfiles checkout
 >```
 
