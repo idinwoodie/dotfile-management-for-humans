@@ -10,7 +10,7 @@
 
 ## Starting From Scratch
 
-### 🚦 A Quick Note About Workflows
+### 🚦 A Quick Note About Your Remote Repository
 
 > To start from scratch, the remote repository you intend to use should be
 empty. If your remote repository is non-empty (even if the only contents are a
