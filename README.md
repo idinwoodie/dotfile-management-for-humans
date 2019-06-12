@@ -3,7 +3,7 @@
 ---
 
 <p align="center">
-🎉 A simplified explanation for a popular dotfile management workflow! 🎉
+🎉 A simplified explanation of a popular dotfile management workflow! 🎉
 </p>
 
 ---
