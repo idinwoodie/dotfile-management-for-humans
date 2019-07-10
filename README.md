@@ -107,6 +107,10 @@ upstream branch on your first push (e.g., `dotfiles push -u origin master`)! If
 you do not have the dotfiles alias in you `.bashrc` already, then I suggest
 adding it so that the alias is present for future session.
 
+## Multiple Platforms
+
+TODO
+
 ## Why Bare Repositories
 
 The concept of using a bare repository is nothing new and definitely not a
